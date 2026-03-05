@@ -1,6 +1,5 @@
 import primer3
 
-
 def rev_comp(seq):
     complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A','a': 't', 'c': 'g', 'g': 'c', 't': 'a'}
     return "".join(complement.get(base, base) for base in reversed(seq))
@@ -30,9 +29,9 @@ def primers_for_CDS(CDS,
     rev_oh = 'CGAATAACAGTAAATTCAAACTAAAGAAAATTTAATGAAACCAGAGTTAAAGGCCTCGAG'.lower()):
 
     p,l,tm,hp = annealing_region(CDS, targetMT=59)
-    fwd = fwd_oh[-(57-l):] + p
+    fwd = fwd_oh[-(57-l):].lower() + p.upper()
     p,l,tm,hp = annealing_region(rev_comp(CDS), targetMT=59)
-    rev = rev_oh[-(57-l):] + p
+    rev = rev_oh[-(57-l):].lower() + p.upper()
     return fwd, rev
 
 def main():
@@ -43,3 +42,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#Adapted from C. McClune (Sattely Lab)
